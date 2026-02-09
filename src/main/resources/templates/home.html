@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Player Form Predictor</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Cricket Player Form Predictor</h1>
+        <p>Check whether a player is currently in form based on past performance</p>
+    </header>
+
+    <main>
+
+        <form action="/predict" method="get" class="search-box">
+            <input
+                    type="text"
+                    name="name"
+                    placeholder="e.g., Rohit Sharma, Jasprit Bumrah"
+                    required
+            />
+            <button type="submit">Predict Form</button>
+        </form>
+
+        <!-- Result Section -->
+        <div th:if="${player != null}" id="result-container">
+            <h2 th:text="${player.name}"></h2>
+            <p>
+                Role:
+                <span th:text="${player.role}"></span>
+            </p>
+            <p>
+                Country:
+                <span th:text="${player.country}"></span>
+            </p>
+            <p>
+                Form Status:
+                <strong th:text="${player.formStatus}"></strong>
+            </p>
+        </div>
+
+        <!-- Error Message -->
+        <div th:if="${error != null}" id="error-message">
+            <p th:text="${error}"></p>
+        </div>
+
+    </main>
+
+
+    <footer>
+        <p>&copy; 2025 Player Form Analytics. All Rights Reserved.</p>
+    </footer>
+</div>
+
+</body>
+</html>
